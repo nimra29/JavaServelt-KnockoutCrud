@@ -1,0 +1,211 @@
+
+
+<div class="container main-container" id="action_div1">
+
+
+
+	<div class="table-wrapper">
+
+
+		<div class="row main-heading">
+
+			<div class="col-sm-8">
+				<h1>
+					Items <b>Database</b>
+				</h1>
+			</div>
+			<div class="col-sm-4">
+				<button data-bind="click: AddUser" type="button"
+					class="btn btn-info main-add-new">
+					<i class="fa fa-plus"></i>&emsp;Add New
+				</button>
+			
+
+
+			</div>
+		</div>
+
+
+		<div class="table-title">
+			<div class="row">
+				<div class="col-sm-8">
+					<h2>
+						Items <b>Detail</b>
+					</h2>
+				</div>
+
+			
+			</div>
+		</div>
+
+
+
+
+
+		<div
+			class="table-responsive table-wrapper-scroll-y my-custom-scrollbar tableFixHead">
+			
+			<table class="table table-bordered table-fixed table-striped mb-0">
+				<thead>
+					<tr>
+						<th>Item Number</th>
+						<th>Item Class</th>
+						<th>Description</th>
+						<th>View</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: items">
+					<tr>
+						<td data-bind="text: itemNumber"></td>
+						<td data-bind="text: itemClass"></td>
+						<td data-bind="text: itemDescription"></td>
+						<td><a data-bind="click: $root.navigateToStructure">Item
+								Structure</a> <a data-bind="click: $root.navigateToAttachment">Item Attachments</a> <a
+							data-bind="click: $root.navigateToAML">Item AML</a></td>
+						<td><a data-bind="click: $root.EditUser" class="edit"><i
+								class="material-icons">&#xE254;</i></a> <a
+							data-bind="click: $root.DeleteUser" class="delete"><i
+								class="material-icons">&#xE872;</i></a></td>
+					</tr>
+
+
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+	<!-- Add Item modal -->
+
+
+	<div class="modal fade bs-example-modal-lg" id="exampleModal"
+		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="modal-header-title">
+						<h5 class="modal-title" id="exampleModalLabel">
+							New <b>Item</b>
+						</h5>
+					</div>
+					<div class="modal-header-close">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Item
+								Class:</label> <input type="text" data-bind="textInput: itemClass"
+								class="form-control" id="recipient-name">
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Item
+								Description:</label>
+							<textarea data-bind="textInput: itemDescription"
+								class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="modal-button btn btn-secondary "
+						data-dismiss="modal">
+						<b>Close</b>
+					</button>
+					<button type="submit" data-bind="click: handleAdd"
+						class="btn btn-info modal-button">
+						<b>Save Item</b>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit modal -->
+
+	<div class="modal fade bs-example-modal-smss" id="exampleModal"
+		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="modal-header-title">
+						<h5 class="modal-title" id="exampleModalLabel">
+							Edit <b>Item</b>
+						</h5>
+					</div>
+					<div class="modal-header-close">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label"><b>Item
+									Class:</b></label> <input type="text" data-bind="textInput: itemClass"
+								class="form-control" id="recipient-name">
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Item
+								Description:</label>
+							<textarea data-bind="textInput: itemDescription"
+								class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="modal-button btn btn-secondary "
+						data-dismiss="modal">
+						<b>Close</b>
+					</button>
+					<button type="submit" data-bind="click: handleEdit"
+						class="modal-button btn btn-info ">
+						<b>Save Item</b>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Delete warning! -->
+	<div id="myModal" class="modal  fade bs-example-modal-del">
+		<div class="modal-dialog modal-size modal-dialog-centered ">
+			<div class="modal-content modal-content-style">
+				<div class="modal-header">
+					<div class="modal-header-close">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<h4 class="modal-title">Are you sure?</h4>
+
+
+				</div>
+				<div class="modal-body">
+					<p>Do you really want to delete these records?</p>
+					<p>This process cannot be undone.</p>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" data-bind="click: handleDelete"
+						class="btn btn-danger">Delete</button>
+				</div>s
+			</div>
+		</div>
+	</div>
+</div>
+
